@@ -267,10 +267,11 @@ def main(args: Optional[Sequence[str]] = None) -> None:
             if ('Executed' in line.decode('utf-8') and
                 not combined_spec_file_started_downloading and
                 parsed_args.download_combined_frontend_spec_file):
+                karma_port = os.environ.get('KARMA_PORT', '9876')
                 download_task = subprocess.Popen(
                     ['wget',
                     (
-                        'http://localhost:9876/base/core/templates/'
+                        f'http://localhost:{karma_port}/base/core/templates/'
                         'combined-tests.spec.js'
                     ),
                     '-P',
